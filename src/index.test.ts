@@ -35,4 +35,10 @@ describe("add", () => {
         expect(() => add("-1,-2")).toThrow("Negative numbers not allowed -1,-2");
         expect(() => add("1,-1,-2")).toThrow("Negative numbers not allowed -1,-2");
     });
+
+    it("should ignore numbers greater than 1000", () => {
+        expect(add("1000,1001")).toBe(1000);
+        expect(add("1,2\n1234")).toBe(3);
+        expect(add("0\n1234")).toBe(0);
+    });
 });
