@@ -1,10 +1,11 @@
+const delimiterMatchRegex = /\/\/(.*)(?=\n)/
 export function add(numbers: string): number {
     if (numbers === "") return 0;
 
-    const delimiter = numbers.match(/\/\/(.+?)/)?.pop() || ',';
+    const delimiter = numbers.match(delimiterMatchRegex)?.pop() || ',';
 
     const parsedNumbers = numbers
-        .replace(/\/\/(.+?)/, '')
+        .replace(delimiterMatchRegex, '')
         .replace(new RegExp(`\\${delimiter}`, 'g'), '\n')
         .split('\n')
         .map((number) => parseInt(number))
