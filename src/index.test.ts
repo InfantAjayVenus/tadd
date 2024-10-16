@@ -30,4 +30,9 @@ describe("add", () => {
         expect(() => add("1,-1,4")).toThrow("Negative numbers not allowed -1");
         expect(() => add("//*1*-1\n4")).toThrow("Negative numbers not allowed -1");
     });
+
+    it("should throw error on multiple negative numbers", () => {
+        expect(() => add("-1,-2")).toThrow("Negative numbers not allowed -1,-2");
+        expect(() => add("1,-1,-2")).toThrow("Negative numbers not allowed -1,-2");
+    });
 });
