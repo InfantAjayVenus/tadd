@@ -24,4 +24,10 @@ describe("add", () => {
         expect(add("//;1\n2;4")).toBe(7);
         expect(add("//+1\n2+4")).toBe(7);
     });
+
+    it("should throw an error when a negative number is passed", () => {
+        expect(() => add("-1")).toThrow("Negative numbers not allowed -1");
+        expect(() => add("1,-1,4")).toThrow("Negative numbers not allowed -1");
+        expect(() => add("//*1*-1\n4")).toThrow("Negative numbers not allowed -1");
+    });
 });
