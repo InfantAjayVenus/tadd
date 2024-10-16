@@ -8,5 +8,10 @@ export function add(numbers: string): number {
         .replace(new RegExp(`\\${delimiter}`, 'g'), '\n')
         .split('\n')
         .map((number) => parseInt(number))
-        .reduce((sum, number) => sum + number, 0);
+        .reduce((sum, number) => {
+            if(number < 0) {
+                throw new Error(`Negative numbers not allowed ${number}`);
+            }
+            return sum + number;
+        }, 0);
 }
