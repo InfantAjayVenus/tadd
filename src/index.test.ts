@@ -14,4 +14,8 @@ describe("add", () => {
         expect(add("1,2")).toBe(3);
         expect(add("1,2,3")).toBe(6);
     });
+
+    it("should accept new line as delimiter", () => {
+        expect(add("1\n2,3")).toBe(6);
+    });
 });
