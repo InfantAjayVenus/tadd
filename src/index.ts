@@ -5,7 +5,7 @@ export function add(numbers: string): number {
     
     return numbers
         .replace(/\/\/(.+?)/, '')
-        .replace(new RegExp(delimiter, 'g'), '\n')
+        .replace(new RegExp(`\\${delimiter}`, 'g'), '\n')
         .split('\n')
         .map((number) => parseInt(number))
         .reduce((sum, number) => sum + number, 0);
