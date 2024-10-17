@@ -43,7 +43,10 @@ describe("add", () => {
     });
 
     it("should accept a delimiter of any length", () => {
+        expect(add("//[|]\n1|2|3")).toBe(6);
+        expect(add("//[**]\n1**2**3")).toBe(6);
         expect(add("//[***]\n1***2***3")).toBe(6);
         expect(add("//[;*;]\n2;*;3;*;4")).toBe(9);
+        expect(add("//[;*;;]\n2;*;;3;*;;4")).toBe(9);
     });
 });
