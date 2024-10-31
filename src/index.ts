@@ -28,10 +28,5 @@ export function add(numbers: string): number {
 
     return parsedNumbers
         .filter(number => number <= 1000)
-        .reduce((sum, number) => {
-            if (number < 0) {
-                throw new Error(`Negative numbers not allowed ${number}`);
-            }
-            return sum + number;
-        }, 0);
+        .reduce((sum, number) => sum + number, 0);
 }
