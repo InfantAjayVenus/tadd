@@ -1,20 +1,25 @@
 const delimiterMatchRegex = /\/\/(.|\[(.+)\])(?=\n)/g;
-export function add(numbers: string): number {
-    if (numbers === "") return 0;
 
-    const delimiter = numbers.match(delimiterMatchRegex)?.at(0)
-                        ?.replace('//', '')
-                        ?.replace(/\[|\]/g, '')
-                        ?.split('')
-                        ?.map(char => `\\${char}`)
-                        ?.join('')
-                    || ',';
+export function extractNumbersFromString(inputString: string): number[] {
+    const delimiter = inputString.match(delimiterMatchRegex)?.at(0)
+        ?.replace('//', '')
+        ?.replace(/\[|\]/g, '')
+        ?.split('')
+        ?.map(char => `\\${char}`)
+        ?.join('')
+        || ',';
 
-    const parsedNumbers = numbers
+    return inputString
         .replace(delimiterMatchRegex, '')
         .replace(new RegExp(delimiter, 'g'), '\n')
         .split('\n')
         .map((number) => parseInt(number))
+}
+
+export function add(numbers: string): number {
+    if (numbers === "") return 0;
+
+    const parsedNumbers = extractNumbersFromString(numbers);
 
     const negativeNumbers = parsedNumbers.filter((number) => number < 0);
     if (negativeNumbers.length > 0) {
@@ -22,11 +27,11 @@ export function add(numbers: string): number {
     }
 
     return parsedNumbers
-    .filter(number => number <= 1000)
-    .reduce((sum, number) => {
-        if (number < 0) {
-            throw new Error(`Negative numbers not allowed ${number}`);
-        }
-        return sum + number;
-    }, 0);
+        .filter(number => number <= 1000)
+        .reduce((sum, number) => {
+            if (number < 0) {
+                throw new Error(`Negative numbers not allowed ${number}`);
+            }
+            return sum + number;
+        }, 0);
 }
