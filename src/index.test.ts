@@ -51,4 +51,14 @@ describe("add", () => {
         expect(add("//[;*;]\n2;*;3;*;4")).toBe(9);
         expect(add("//[;*;;]\n2;*;;3;*;;4")).toBe(9);
     });
+
+    it("should ignore 0 as a delimiter", () => {
+
+        expect(add("//0\n102\n3")).toBe(3);
+        expect(add("//1\n112\n3")).toBe(112);
+    });
+
+    it("should add only numbers in odd indices", () => {
+        expect(add("//0\n1\n3\n4")).toBe(3);
+    })
 });
