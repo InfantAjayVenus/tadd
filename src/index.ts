@@ -5,7 +5,7 @@ export function extractNumbersFromString(inputString: string): number[] {
         ?.replace('//', '')
         ?.replace(/\[|\]/g, '')
         ?.split('')
-        ?.map(char => `\\${char}`)
+        ?.map(char => char.match(/\w/) ? char : `\\${char}`)
         ?.join('')
         || ',';
 

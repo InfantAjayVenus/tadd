@@ -23,6 +23,8 @@ describe("add", () => {
         expect(add("//;\n1;2;3")).toBe(6);
         expect(add("//;\n1\n2;4")).toBe(7);
         expect(add("//+\n1\n2+4")).toBe(7);
+        expect(add("//7\n1\n274")).toBe(7);
+        expect(add("//n\n1\n2n4")).toBe(7);
     });
 
     it("should throw an error when a negative number is passed", () => {
