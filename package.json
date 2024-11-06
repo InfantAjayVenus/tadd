@@ -6,6 +6,7 @@
   "scripts":{
     "test": "jest --coverage",
     "build": "tsc",
+    "start": "tsx src/index.ts",
     "dev": "tsx src/index.ts",
     "dev:tdd": "jest --watchAll"
   } ,
